@@ -3,6 +3,8 @@ import 'package:mini_project_menara_indonesia/View/comiclist/homepage.dart';
 import 'package:mini_project_menara_indonesia/View/comiclist/popular.dart';
 import 'package:mini_project_menara_indonesia/View/comiclist/recommend.dart';
 
+import '../View/comiclist/homepagev2.dart';
+
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
 
@@ -14,7 +16,7 @@ class _NavBarState extends State<NavBar> {
 
   int currenticon = 0;
   final screen = [
-    const Homepage(),
+    const Home(),
     const PopularComics(),
     const RecommendComics(),
   ];

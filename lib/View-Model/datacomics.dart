@@ -60,45 +60,29 @@ class DataComicsProvider with ChangeNotifier {
     //all comic list
     Future<void> setAllComic() async {
     var res = await dio.get("$url/list");
-    // var resmanga = await dio.get("$url/list?filter=manga");
-    // var resmanhwa = await dio.get("$url/list?filter=manhwa");
-    // var resmanhua = await dio.get("$url/list?filter=manhua");
+    var resmanga = await dio.get("$url/list?filter=manga");
+    var resmanhwa = await dio.get("$url/list?filter=manhwa");
+    var resmanhua = await dio.get("$url/list?filter=manhua");
     try {
       if (res.statusCode == 200) {
         final List data = res.data["data"];
         _list = data.map((e) => ComicListModel.fromJson(e)).toList();
       }
-      // if (resmanga.statusCode == 200) {
-      //   final List datamanga = resmanga.data['data'];
-      //   _filtermanga = datamanga.map((e) => ComicListModel.fromJson(e)).toList();
-      // }
-      // if (resmanhwa.statusCode == 200) {
-      //   final List datamanhwa = resmanhwa.data['data'];
-      //   _filtermanhwa = datamanhwa.map((e) => ComicListModel.fromJson(e)).toList();
-      // }
-      // if (resmanhua.statusCode == 200) {
-      //   final List datamanhua = resmanhua.data['data'];
-      //   _filtermanhua = datamanhua.map((e) => ComicListModel.fromJson(e)).toList();
-      // }
+      if (resmanga.statusCode == 200) {
+        final List datamanga = resmanga.data['data'];
+        _filtermanga = datamanga.map((e) => ComicListModel.fromJson(e)).toList();
+      }
+      if (resmanhwa.statusCode == 200) {
+        final List datamanhwa = resmanhwa.data['data'];
+        _filtermanhwa = datamanhwa.map((e) => ComicListModel.fromJson(e)).toList();
+      }
+      if (resmanhua.statusCode == 200) {
+        final List datamanhua = resmanhua.data['data'];
+        _filtermanhua = datamanhua.map((e) => ComicListModel.fromJson(e)).toList();
+      }
     } catch (e) {
       print(e.toString());
     }
     notifyListeners();
   }
-
-  //   //filter comic
-  //   Future<void> setAllFilterComic(filter) async {
-  //   setState(ViewState.loading);
-  //   var res = await dio.get("$url/list?filter=$filter");
-  //   try {
-  //     if (res.statusCode == 200) {
-  //       final List data = res.data["data"];
-  //       _filter = data.map((e) => ComicListModel.fromJson(e)).toList();
-  //     }
-  //     setState(ViewState.none);
-  //   } catch (e) {
-  //     setState(ViewState.error);
-  //   }
-  //   notifyListeners();
-  // }
 }

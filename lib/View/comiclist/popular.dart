@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project_menara_indonesia/View-Model/datacomics.dart';
+import 'package:mini_project_menara_indonesia/Widgets/image_network.dart';
 import 'package:provider/provider.dart';
 
 import '../../View-Model/comics.dart';
@@ -41,23 +42,7 @@ class _PopularComicsState extends State<PopularComics> {
                     },
                     child: Column(
                       children: [
-                        Image(
-                           loadingBuilder: (context, child, loadingProgress) {
-                                  if (loadingProgress == null) {
-                                    return child;
-                                  }
-                                  return Center(
-                                    child: CircularProgressIndicator(
-                                      value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null
-                                    ),
-                                  );
-                                },
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Center(child: Text("Invalid image data"),);
-                                },
-                          image: NetworkImage(
-                              "${comicsdata.getcomicspopular[index].image}"),
-                        ),
+                        ShowImageNetwork(urlimage: "${comicsdata.getcomicspopular[index].image}"),
                         ListTile(
                           title: Text(
                               "${comicsdata.getcomicspopular[index].title}"),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mini_project_menara_indonesia/View/navbar.dart';
+import 'package:mini_project_menara_indonesia/View/comiclist/homepagev2.dart';
+import 'package:mini_project_menara_indonesia/Widgets/navbar.dart';
 import 'package:provider/provider.dart';
 
 import 'View-Model/comics.dart';

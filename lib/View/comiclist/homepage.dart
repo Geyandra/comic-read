@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project_menara_indonesia/View-Model/datacomics.dart';
+import 'package:mini_project_menara_indonesia/Widgets/image_network.dart';
 import 'package:provider/provider.dart';
 
 import '../../View-Model/comics.dart';
@@ -43,22 +44,7 @@ class _HomepageState extends State<Homepage> {
                             children: [
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(18),
-                                child: Image(
-                                  loadingBuilder: (context, child, loadingProgress) {
-                                    if (loadingProgress == null) {
-                                      return child;
-                                    }
-                                    return Center(
-                                      child: CircularProgressIndicator(
-                                        value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null
-                                      ),
-                                    );
-                                  },
-                                  errorBuilder: (context, error, stackTrace) {
-                                    return Center(child: Text("Invalid image data"),);
-                                  },
-                                    image: NetworkImage(
-                                        "${dataprovider.getlist[index].image}")),
+                                child: ShowImageNetwork(urlimage: "${dataprovider.getlist[index].image}",),
                               ),
                               SizedBox(
                                 height: 10,
