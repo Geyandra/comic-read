@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class FieldData extends StatelessWidget {
   final String label;
   final String hintext;
+  final int? maxlines;
   const FieldData({
     required this.label,
     Key? key,
-    required this.hintext,
+    required this.hintext, this.maxlines,
   }) : super(key: key);
 
   @override
@@ -15,6 +16,7 @@ class FieldData extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: TextFormField(
+        maxLines: maxlines,
         readOnly: true,
         decoration: InputDecoration(
             floatingLabelBehavior: FloatingLabelBehavior.always,

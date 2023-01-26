@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project_menara_indonesia/View/popular.dart';
-import 'package:mini_project_menara_indonesia/View/recommend.dart';
+import 'package:mini_project_menara_indonesia/View/comiclist/homepage.dart';
+import 'package:mini_project_menara_indonesia/View/comiclist/popular.dart';
+import 'package:mini_project_menara_indonesia/View/comiclist/recommend.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -13,6 +14,7 @@ class _NavBarState extends State<NavBar> {
 
   int currenticon = 0;
   final screen = [
+    const Homepage(),
     const PopularComics(),
     const RecommendComics(),
   ];
@@ -32,6 +34,10 @@ class _NavBarState extends State<NavBar> {
             });
           },
           items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Homepage",
+            ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: "Popular",

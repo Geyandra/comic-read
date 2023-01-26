@@ -1,41 +1,63 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:mini_project_menara_indonesia/Models/selectedcomic.dart';
-import '../Models/comics.dart';
+
+import '../Models/chapter_read.dart';
+import '../Models/selectedcomic.dart';
+import 'enum.dart';
 
 class ComicsProvider with ChangeNotifier {
   final dio = Dio();
   String url = "https://komiku-api.fly.dev/api/comic";
-  List<ComicsModel> _comicspopular = [];
-  List<ComicsModel> _comicsrecommend = [];
-  SelectedComicModel? getcomic;
 
-  List<ComicsModel> get getcomicspopular => _comicspopular;
-  List<ComicsModel> get getcomicsrecommend => _comicsrecommend;
+  ViewState _state = ViewState.none;
+  String? genre = '';
+  SelectedComicModel? _selectcomic;
+  List<ChapterList> datachapter = [];
+  late ChapterReadModel _selectchapter;
 
-  Future<void> setAllpopularcomic() async {
-    var res = await dio.get("$url/popular/page/1");
-    if (res.statusCode == 200) {
-      final List comic = res.data["data"];
-      _comicspopular = comic.map((e) => ComicsModel.fromJson(e)).toList();
+  ViewState get state => _state;
+  SelectedComicModel? get getselectcomic => _selectcomic;
+  ChapterReadModel get getchapter => _selectchapter;
+
+  void setState(ViewState state) {
+    _state = state;
+    notifyListeners();
+  }
+
+  setSelectedComic(selectcomic) async {
+    setState(ViewState.loading);
+    try {
+      var res = await dio.get("$url/info$selectcomic");
+      if (res.statusCode == 200) {
+        final comic = res.data["data"];
+        _selectcomic = SelectedComicModel.fromJson(comic);
+        List<String>? datagenre = _selectcomic!.genre;
+        genre = datagenre!.join(", ");
+        setState(ViewState.none);
+      }
+    } catch (e) {
+      setState(ViewState.error);
     }
     notifyListeners();
   }
 
-    Future<void> setAllrecommendcomic() async {
-    var res = await dio.get("$url/recommended/page/1");
-    if (res.statusCode == 200) {
-      final List comic = res.data["data"];
-      _comicsrecommend = comic.map((e) => ComicsModel.fromJson(e)).toList();
-    }
+  setChapter(chapterlist) {
+    datachapter = chapterlist;
     notifyListeners();
   }
 
- selectedcomic(selectcomic)async{
-    var res = await dio.get("$url/info$selectcomic");
-      final comic = res.data["data"];
-      print(comic);
-      getcomic = SelectedComicModel.fromJson(comic);
+  Future<void> setReadChapter(chapter) async {
+    setState(ViewState.loading);
+    try {
+      var res = await dio.get("$url/chapter$chapter");
+      if (res.statusCode == 200) {
+        final chapter = res.data["data"];
+        _selectchapter = ChapterReadModel.fromJson(chapter);
+        setState(ViewState.none);
+      }
+    } catch (e) {
+      setState(ViewState.error);
+    }
     notifyListeners();
   }
 }
