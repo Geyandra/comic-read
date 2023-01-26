@@ -18,7 +18,6 @@ class _RecommendComicsState extends State<RecommendComics> {
   @override
   Widget build(BuildContext context) {
     final comicsdata = Provider.of<DataComicsProvider>(context, listen: false);
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Rekomendasi Komik"),
@@ -34,16 +33,13 @@ class _RecommendComicsState extends State<RecommendComics> {
           return ListView.separated(
               itemBuilder: (context, index) => InkWell(
                     onTap: () {
-                      final selectcomic =
-                          comicsdata.getcomicspopular[index].endpoint;
-                      context
-                          .read<ComicsProvider>()
-                          .setSelectedComic(selectcomic);
+                      final selectcomic = comicsdata.getcomicsrecommend[index].endpoint;
+                      context.read<ComicsProvider>().setSelectedComic(selectcomic);
                       navPushTransition(context, DetailComic());
                     },
                     child: Column(
                       children: [
-                        ShowImageNetwork(urlimage: "${comicsdata.getcomicspopular[index].image}"),
+                        ShowImageNetwork(urlimage: "${comicsdata.getcomicsrecommend[index].image}"),
                         ListTile(
                           title: Text(
                               "${comicsdata.getcomicsrecommend[index].title}"),

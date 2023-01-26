@@ -14,13 +14,22 @@ class ComicsProvider with ChangeNotifier {
   SelectedComicModel? _selectcomic;
   List<ChapterList> datachapter = [];
   late ChapterReadModel _selectchapter;
+  int _update = 0;
 
   ViewState get state => _state;
   SelectedComicModel? get getselectcomic => _selectcomic;
   ChapterReadModel get getchapter => _selectchapter;
+  int get index => _update;
+
 
   void setState(ViewState state) {
     _state = state;
+    notifyListeners();
+  }
+
+  nextchapter(updateurl) async {
+    _update = updateurl;
+    _update--;
     notifyListeners();
   }
 

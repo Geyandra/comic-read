@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mini_project_menara_indonesia/View/comiclist/homepagev2.dart';
 import 'package:mini_project_menara_indonesia/Widgets/navbar.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
                   textStyle: const TextStyle(fontWeight: FontWeight.w500))
               .fontFamily,
           useMaterial3: true),
-      home: NavBar(),
+      home: const NavBar(),
     );
   }
 }

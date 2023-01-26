@@ -13,7 +13,6 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-
   int currenticon = 0;
   final screen = [
     const Home(),
@@ -35,17 +34,26 @@ class _NavBarState extends State<NavBar> {
               currenticon = value;
             });
           },
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Homepage",
+              icon: Image.asset(
+                "assets/images/comic.png",
+                scale: 17,
+              ),
+              label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Image.asset(
+                "assets/images/fire.png",
+                scale: 17,
+              ),
               label: "Popular",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.groups),
+              icon: Image.asset(
+                "assets/images/stars.png",
+                scale: 17,
+              ),
               label: "Recommend",
             ),
           ]),

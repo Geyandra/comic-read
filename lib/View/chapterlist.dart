@@ -11,17 +11,27 @@ class ChapterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Chapter List"),),
-      body: Consumer<ComicsProvider>(builder: (context, value, child) {
-        return ListView.separated(
-          separatorBuilder: (context, index) => Divider(),
-          itemCount: value.datachapter.length,
-          itemBuilder: (context, index) => ListTile(title: Text("${value.datachapter[index].name}"),onTap: () {
-            context.read<ComicsProvider>().setReadChapter("${value.datachapter[index].endpoint}");
-            navPushTransition(context, ChapterRead());
-          },),
+      appBar: AppBar(
+        title: Text("Chapter List"),
+      ),
+      body: Consumer<ComicsProvider>(
+        builder: (context, value, child) {
+          return ListView.separated(
+            separatorBuilder: (context, index) => Divider(),
+            itemCount: value.datachapter.length,
+            itemBuilder: (context, index) => ListTile(
+              title: Text("${value.datachapter[index].name}"),
+              onTap: () {
+                print(index);
+                context.read<ComicsProvider>().nextchapter(index);
+                context.read<ComicsProvider>().setReadChapter("${value.datachapter[index].endpoint}");
+                navPushTransition(context, ChapterRead());
+              },
+            ),
           );
-      },),
-    );;
+        },
+      ),
+    );
+    ;
   }
 }

@@ -5,7 +5,7 @@ import '../Models/comics.dart';
 import 'enum.dart';
 
 class DataComicsProvider with ChangeNotifier {
-  final page = 1;
+  int page = 1;
   final dio = Dio();
   String url = "https://komiku-api.fly.dev/api/comic";
   List<ComicsModel> _comicspopular = [];
