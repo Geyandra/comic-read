@@ -20,6 +20,7 @@ class _RecommendComicsState extends State<RecommendComics> {
     final comicsdata = Provider.of<DataComicsProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text("Rekomendasi Komik"),
       ),
       body: FutureBuilder(

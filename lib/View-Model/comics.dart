@@ -19,17 +19,25 @@ class ComicsProvider with ChangeNotifier {
   ViewState get state => _state;
   SelectedComicModel? get getselectcomic => _selectcomic;
   ChapterReadModel get getchapter => _selectchapter;
-  int get index => _update;
-
+  int get next => _update;
+  int get prev => _update;
 
   void setState(ViewState state) {
     _state = state;
     notifyListeners();
   }
 
-  nextchapter(updateurl) async {
+  void currentchapter(updateurl) {
     _update = updateurl;
+  }
+
+  void incrementchpater() {
     _update--;
+    notifyListeners();
+  }
+
+  void decrementchpater() {
+    _update++;
     notifyListeners();
   }
 

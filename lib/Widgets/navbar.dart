@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mini_project_menara_indonesia/View/comiclist/homepage.dart';
 import 'package:mini_project_menara_indonesia/View/comiclist/popular.dart';
 import 'package:mini_project_menara_indonesia/View/comiclist/recommend.dart';
 
@@ -26,7 +25,7 @@ class _NavBarState extends State<NavBar> {
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currenticon,
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white24,
+          backgroundColor: Colors.white,
           selectedItemColor: Colors.blue.shade300,
           unselectedItemColor: Color.fromRGBO(205, 205, 205, 1),
           onTap: (value) {

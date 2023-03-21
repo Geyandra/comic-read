@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mini_project_menara_indonesia/View-Model/datacomics.dart';
 import 'package:provider/provider.dart';
 
+import '../../View-Model/comics.dart';
 import '../../Widgets/image_network.dart';
+import '../../Widgets/transitions.dart';
+import '../detail_comic.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -32,7 +35,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         Provider.of<DataComicsProvider>(context, listen: false);
     return Scaffold(
         appBar: AppBar(
-          title: Text("Homepage v2"),
+          automaticallyImplyLeading: false,
+          leading: Icon(Icons.search),
+          actions: [
+            
+          ],
           bottom: TabBar(
               labelColor: Colors.blue,
               unselectedLabelColor: Colors.blue.shade200,
@@ -71,7 +78,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       ListView.separated(
                           itemBuilder: (context, index) {
                             return InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                print(index);
+                                final selectcomic = dataprovider.getlist[index].endpoint;
+                                context.read<ComicsProvider>().setSelectedComic(selectcomic);
+                                navPushTransition(context, DetailComic());
+                              },
                               child: Card(
                                 child: Column(
                                   children: [
@@ -105,7 +117,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       ListView.separated(
                           itemBuilder: (context, index) {
                             return InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                final selectcomic = dataprovider.getfiltermanga[index].endpoint;
+                                context.read<ComicsProvider>().setSelectedComic(selectcomic);
+                                navPushTransition(context, DetailComic());
+                              },
                               child: Card(
                                 child: Column(
                                   children: [
@@ -139,7 +155,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       ListView.separated(
                           itemBuilder: (context, index) {
                             return InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                final selectcomic = dataprovider.getfiltermanhwa[index].endpoint;
+                                context.read<ComicsProvider>().setSelectedComic(selectcomic);
+                                navPushTransition(context, DetailComic());
+                              },
                               child: Card(
                                 child: Column(
                                   children: [
@@ -173,7 +193,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                       ListView.separated(
                           itemBuilder: (context, index) {
                             return InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                final selectcomic = dataprovider.getfiltermanhua[index].endpoint;
+                                context.read<ComicsProvider>().setSelectedComic(selectcomic);
+                                navPushTransition(context, DetailComic());
+                              },
                               child: Card(
                                 child: Column(
                                   children: [

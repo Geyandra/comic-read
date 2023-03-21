@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:mini_project_menara_indonesia/Models/comiclist.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../Models/comics.dart';
 import 'enum.dart';
 
@@ -24,6 +25,9 @@ class DataComicsProvider with ChangeNotifier {
   List<ComicListModel> get getfiltermanhua => _filtermanhua;
   ViewState get state => _state;
 
+  RefreshController _refreshController = RefreshController();
+  RefreshController get refreshcontroller => _refreshController;
+
   void setState(ViewState state) {
     _state = state;
     notifyListeners();
@@ -37,6 +41,7 @@ class DataComicsProvider with ChangeNotifier {
         final List comic = res.data["data"];
         _comicspopular = comic.map((e) => ComicsModel.fromJson(e)).toList();
       }
+      _refreshController.refreshCompleted();
     } catch (e) {
       print(e.toString());
     }

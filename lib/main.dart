@@ -7,7 +7,6 @@ import 'View-Model/comics.dart';
 import 'View-Model/datacomics.dart';
 
 void main() {
-  
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => ComicsProvider()),
     ChangeNotifierProvider(create: (_) => DataComicsProvider()),

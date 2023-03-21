@@ -20,6 +20,7 @@ class _PopularComicsState extends State<PopularComics> {
     final comicsdata = Provider.of<DataComicsProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text("Komik Popular"),
       ),
       body: FutureBuilder(
@@ -33,16 +34,15 @@ class _PopularComicsState extends State<PopularComics> {
           return ListView.separated(
               itemBuilder: (context, index) => InkWell(
                     onTap: () {
-                      final selectcomic =
-                          comicsdata.getcomicspopular[index].endpoint;
-                      context
-                          .read<ComicsProvider>()
-                          .setSelectedComic(selectcomic);
+                      final selectcomic = comicsdata.getcomicspopular[index].endpoint;
+                      context.read<ComicsProvider>().setSelectedComic(selectcomic);
                       navPushTransition(context, DetailComic());
                     },
                     child: Column(
                       children: [
-                        ShowImageNetwork(urlimage: "${comicsdata.getcomicspopular[index].image}"),
+                        ShowImageNetwork(
+                            urlimage:
+                                "${comicsdata.getcomicspopular[index].image}"),
                         ListTile(
                           title: Text(
                               "${comicsdata.getcomicspopular[index].title}"),
