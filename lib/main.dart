@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
+import 'package:mini_project_menara_indonesia/View/register.dart';
 import 'package:mini_project_menara_indonesia/Widgets/navbar.dart';
 import 'package:provider/provider.dart';
 
@@ -25,11 +26,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
-          fontFamily: GoogleFonts.poppins(
-                  textStyle: const TextStyle(fontWeight: FontWeight.w500))
-              .fontFamily,
+          // fontFamily: GoogleFonts.poppins(
+          //         textStyle: const TextStyle(fontWeight: FontWeight.w500))
+          //     .fontFamily,
           useMaterial3: true),
-      home: const NavBar(),
+      home: const RegisterPage(),
     );
   }
 }
